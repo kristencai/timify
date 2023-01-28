@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+import './backend.css';
 
 
 export default function LogIn() {
@@ -8,6 +9,7 @@ export default function LogIn() {
     const REDIRECT_URI = "http://localhost:3000"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
+    // const playlist_id = response.json()['id']
 
     const playlist_api = "https://api.spotify.com/v1/me/playlists"
 
@@ -100,17 +102,36 @@ export default function LogIn() {
     return (
         <div className="App">
             <header className="App-header">
-                <h1>Spotify React</h1>
-                {!token ?
-                    <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
-                        to Spotify</a>
-                    : <div>
-                         <form onSubmit={getSongs}>
-                        <input type="text" /*onChange={e => setSearchKey(e.target.value)}*//>
-                        <button type={"submit"}>Search</button>
-                        </form> 
-                        <button onClick={logout}>Logout</button>
-                    </div> }
+
+            {!token ?
+            // if the user is not logged in, render this portion
+            <div>
+                <h1 style = {{fontFamily: "'Montserrat'"}}>Spotify React</h1>
+                <p className = "description"style = {{fontFamily: "'Montserrat'"}}>
+                    Timify is an app that allows you to generate a random playlist with 
+                    according to time and genre specifications.
+                </p>
+                <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>
+                <button className = "login-button">
+                    <p style = {{color: "#FFFFFF", fontWeight:500, outline: "#FFFFFF", margin: 0}}>Login to Spotify</p>
+                </button>
+                </a>
+            </div>
+                : 
+                // if the user is logged in, render this
+                <div className = "content-div">
+
+                    <input name="searchTxt" type="text" maxlength="512" id="searchTxt" class="searchField" placeholder='Enter a minute value'/>
+
+                    {/* <a href={"https://open.spotify.com/playlist/" + playlist_id}> */}
+                        <button>Generate Playlist</button>
+                    {/* </a> */}
+
+                    <button className = "logout-button" onClick={logout}>
+                        <p style = {{color: "#1DB954", fontWeight:500, outline: "#FFFFFF", margin: 0}}>Logout</p>
+                    </button>
+                </div>
+                }
             </header>
         </div>
     );
