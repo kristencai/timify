@@ -7,6 +7,7 @@ export default function LogIn() {
     const REDIRECT_URI = "http://localhost:3000"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
+    // const playlist_id = response.json()['id']
 
     const [token, setToken] = useState("")
 
@@ -52,6 +53,10 @@ export default function LogIn() {
                 <div className = "content-div">
 
                     <input name="searchTxt" type="text" maxlength="512" id="searchTxt" class="searchField" placeholder='Enter a minute value'/>
+
+                    {/* <a href={"https://open.spotify.com/playlist/" + playlist_id}> */}
+                        <button>Generate Playlist</button>
+                    {/* </a> */}
 
                     <button className = "logout-button" onClick={logout}>
                         <p style = {{color: "#1DB954", fontWeight:500, outline: "#FFFFFF", margin: 0}}>Logout</p>
