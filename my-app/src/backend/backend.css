@@ -25,9 +25,14 @@
     font-family: 'Montserrat', sans-serif;
     font-size: 24px;
 }
-.button-div{
+.content-div{
     height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: end;
+}
+
+.searchTxt {
+    height: 4rem;
+    width: 18rem;
 }

@@ -34,6 +34,7 @@ export default function LogIn() {
         <div className="App">
             <header className="App-header">
             {!token ?
+            // if the user is not logged in, render this portion
             <div>
                 <h1 style = {{fontFamily: "'Montserrat'"}}>Spotify React</h1>
                 <p className = "description"style = {{fontFamily: "'Montserrat'"}}>
@@ -47,7 +48,11 @@ export default function LogIn() {
                 </a>
             </div>
                 : 
-                <div className = "button-div">
+                // if the user is logged in, render this
+                <div className = "content-div">
+
+                    <input name="searchTxt" type="text" maxlength="512" id="searchTxt" class="searchField" placeholder='Enter a minute value'/>
+
                     <button className = "logout-button" onClick={logout}>
                         <p style = {{color: "#1DB954", fontWeight:500, outline: "#FFFFFF", margin: 0}}>Logout</p>
                     </button>
