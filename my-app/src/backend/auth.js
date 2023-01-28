@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import './backend.css';
+
 
 export default function LogIn() {
     const CLIENT_ID = "9bd164afd63340c3a1522022a25e4442"
@@ -31,10 +33,18 @@ export default function LogIn() {
     return (
         <div className="App">
             <header className="App-header">
-                <h1>Spotify React</h1>
+                <h1 style = {{fontFamily: "'Montserrat'"}}>Spotify React</h1>
+
+                <p style = {{fontFamily: "'Montserrat'"}}>
+                    Timify is an app that allows you to generate a random playlist with 
+                    according to time and genre specifications.
+                </p>
                 {!token ?
-                    <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
-                        to Spotify</a>
+                    <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>
+                        <button className = "login-button">
+                            <p style = {{color: "#FFFFFF", fontWeight:500, outline: "#FFFFFF", margin: 0}}>Login to Spotify</p>
+                        </button>
+                    </a>
                     : <button onClick={logout}>Logout</button>}
             </header>
         </div>
