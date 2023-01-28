@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useId,  useEffect, useState } from 'react';
 import axios from 'axios';
 
 import './backend.css';
@@ -78,6 +78,10 @@ export default function LogIn() {
     } 
 
     const [token, setToken] = useState("")
+    const id = useId();
+    const [input, setInput] = useState('');
+
+    getSong: 
 
     useEffect(() => {
         const hash = window.location.hash
@@ -121,7 +125,8 @@ export default function LogIn() {
                 // if the user is logged in, render this
                 <div className = "content-div">
 
-                    <input name="searchTxt" type="text" maxlength="512" id="searchTxt" class="searchField" placeholder='Enter a minute value'/>
+                    <input id={id} value={input} onInput={e => setInput(e.target.value)}/>
+                    {console.log(input)}
 
                     {/* <a href={"https://open.spotify.com/playlist/" + playlist_id}> */}
                         <button>Generate Playlist</button>
