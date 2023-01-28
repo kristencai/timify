@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
 import LogIn from './backend/auth';
-import Playlist from './backend/userData';
 
 
 function App() {
