@@ -36,7 +36,7 @@ export default function LogIn() {
             {!token ?
             <div>
                 <h1 style = {{fontFamily: "'Montserrat'"}}>Spotify React</h1>
-                <p style = {{fontFamily: "'Montserrat'"}}>
+                <p className = "description"style = {{fontFamily: "'Montserrat'"}}>
                     Timify is an app that allows you to generate a random playlist with 
                     according to time and genre specifications.
                 </p>
@@ -46,7 +46,13 @@ export default function LogIn() {
                 </button>
                 </a>
             </div>
-                : <button onClick={logout}>Logout</button>}
+                : 
+                <div className = "button-div">
+                    <button className = "logout-button" onClick={logout}>
+                        <p style = {{color: "#1DB954", fontWeight:500, outline: "#FFFFFF", margin: 0}}>Logout</p>
+                    </button>
+                </div>
+                }
             </header>
         </div>
     );

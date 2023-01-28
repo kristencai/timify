@@ -45,10 +45,10 @@
 
 }
 .left{
-  width: 40vw;
+  width: 47.2vw;
 }
 .right{
-  width: 60vw;
+  width: 55vw;
   height: 100vh;
   overflow: hidden;
 }
@@ -58,7 +58,6 @@
   padding: 0px;
 }
 .black{
-
   background-image: linear-gradient(to right, rgb(25, 20, 20, 1) , rgba(0,0,0,0));
   height: 100vh;
   width: 35rem;

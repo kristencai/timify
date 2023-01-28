@@ -32,6 +32,19 @@ function App() {
             <img className = "collage" src = "https://www.billboard.com/wp-content/uploads/2022/03/28.-Bruce-Springsteen-%E2%80%98Born-in-the-U.S.A.-1984-album-art-billboard-1240.jpg?w=1024"/>
             <img className = "collage" src = "https://www.billboard.com/wp-content/uploads/2022/03/22.-Drake-If-Youre-Reading-This-Its-Too-Late-2015-album-art-billboard-1240.jpg?w=1024"/>
             <img className = "collage" src = "https://www.billboard.com/wp-content/uploads/2022/03/16.-The-Clash-%E2%80%98London-Calling-1979-album-art-billboard-1240.jpg?w=1030"/>
+            <img className = "collage" src = "https://www.billboard.com/wp-content/uploads/2022/03/18.-The-Roots-%E2%80%98Things-Fall-Apart-1999-album-art-billboard-1240.jpg?w=1033"/>
+            <img className = "collage" src = "https://www.billboard.com/wp-content/uploads/2022/03/15.-Nas-%E2%80%98Illmatic-1994-album-art-billboard-1240.jpg?w=1024"/>
+            <img className = "collage" src = "https://www.billboard.com/wp-content/uploads/2022/03/18.-The-Roots-%E2%80%98Things-Fall-Apart-1999-album-art-billboard-1240.jpg?w=1033"/>
+            <img className = "collage" src = "https://www.billboard.com/wp-content/uploads/2022/03/14.-Blink-182-%E2%80%98Enema-of-the-State-1999-album-art-billboard-1240.jpg?w=1030"/>
+            <img className = "collage" src = "https://www.billboard.com/wp-content/uploads/2022/03/13.-Kendrick-Lamar-To-Pimp-a-Butterfly-2015-album-art-billboard-1240.jpg?w=1024"/>
+            <img className = "collage" src = "https://www.billboard.com/wp-content/uploads/2022/03/12.-Hole-%E2%80%98Live-Through-This-1994-album-art-billboard-1240.jpg?w=1024"/>
+            <img className = "collage" src = "https://www.billboard.com/wp-content/uploads/2022/03/10.-Elvis-Presley-%E2%80%98Elvis-Presley-1956-album-art-billboard-1240.jpg?w=1140"/>
+            <img className = "collage" src = "https://www.billboard.com/wp-content/uploads/2022/03/9.-Public-Enemy-%E2%80%98Fear-of-a-Black-Planet-1990-album-art-2022-billboard-1240.jpg?w=1024"/>
+
+            
+
+
+            
 
             
         </div>
