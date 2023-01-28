@@ -6,8 +6,6 @@ import LogIn from './backend/auth';
 function App() {
   return (
     <div className="App">
-      <LogIn />
-
       <div className = "homeContainer">
         <div className = "left">
           <LogIn/>
