@@ -6,3 +6,8 @@
     font-family: 'Montserrat', sans-serif;
     font-size: 24px;
 }
+
+.App-header{
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
