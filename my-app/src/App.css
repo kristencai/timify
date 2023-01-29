@@ -56,10 +56,12 @@
   width: 12rem;
   height: 12rem;
   padding: 0px;
+  filter: blur(1px);
 }
 .black{
   background-image: linear-gradient(to right, rgb(25, 20, 20, 1) , rgba(0,0,0,0));
   height: 100vh;
   width: 35rem;
   position: absolute;
+  z-index: 100;;
 }

@@ -1,7 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, {useId,  useEffect, useState } from 'react';
 import axios from 'axios';
 
 import './backend.css';
+
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Button from '@mui/material/Button';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 
 
@@ -99,6 +109,12 @@ export default function LogIn() {
           </>
         );
       }
+    const id = useId();
+    const [input, setInput] = useState('');
+    const [title, setTitle] = useState('')
+    const [genre, setGenre] = useState('');
+
+
 
     useEffect(() => {
         const hash = window.location.hash
@@ -172,6 +188,15 @@ export default function LogIn() {
         
     // }
 
+    const darkTheme = createTheme({
+        palette: {
+          mode: 'dark',
+        },
+      });
+
+      
+    
+
     return (
         <div className="App">
             <header className="App-header">
@@ -193,18 +218,60 @@ export default function LogIn() {
                 : 
                 // if the user is logged in, render this
                 <div className = "content-div">
-                <form onSubmit={getSongs}>
-                    <MyControlledInput/>
-                            <button type={"submit"}>Generate Playlist</button>
-                        </form>
+
+
+                    {/* <input id={id} value={input} onInput={e => setInput(e.target.value)}/> */}
+                    {console.log(input)}
+
+                    <ThemeProvider theme={darkTheme}>
+                    <CssBaseline />
+
+                    <div className="surround">
+
+                        <div className='field'>
+                            <TextField id="outlined-number" label="Duration of playlist (minutes)" type="text" InputLabelProps={{shrink: true,}} style = {{width:350}} 
+                            value = {input} onChange = {x => setInput(x.target.value)}/>
+                        </div>
+                        
+                        <div className='field'>
+                            <TextField id="outlined-basic" label="Playlist Name" variant="outlined" InputLabelProps={{shrink: true,}} style = {{width:350}} 
+                            value = {title} onChange = {x => setTitle(x.target.value)}/>
+                        </div>
+
+                        <div className='field'>
+                            <FormControl style = {{width:350}}>
+                                <InputLabel id="demo-simple-select-label">Genre</InputLabel>
+                                <Select labelId="demo-simple-select-label" id="demo-simple-select" value={genre} label="Genre"
+                                onChange={x => setGenre(x.target.value)}>
+                                <MenuItem value={1}>Pop</MenuItem>
+                                <MenuItem value={2}>Rock</MenuItem>
+                                <MenuItem value={3}>Jazz</MenuItem>
+                                <MenuItem value={4}>Classical</MenuItem>
+                                {console.log(genre)}
+                                </Select>
+                            </FormControl>
+                        </div>
+                        <div style = {{paddingBottom: "1rem",}}>
+                            <button className = "login-button">
+                                <p style = {{color: "#FFFFFF", fontWeight:500, outline: "#FFFFFF", margin: 0}}>Generate Playlist</p>
+                            </button>
+                        </div>
+                        <div style = {{paddingTop: "1rem",}}>
+                            <button className = "logout-button" onClick={logout}>
+                                <p style = {{color: "#1DB954", fontWeight:500, outline: "#FFFFFF", margin: 0}}>Logout</p>
+                            </button>
+                        </div>
+
+                    </div>
+                    </ThemeProvider>
+
+
 
                     {/* <a href={"https://open.spotify.com/playlist/" + playlist_id}> */}
-                        {/* <button onClick={getSongs()}>Generate Playlist</button> */}
+                        
                     {/* </a> */}
 
-                    <button className = "logout-button" onClick={logout}>
-                        <p style = {{color: "#1DB954", fontWeight:500, outline: "#FFFFFF", margin: 0}}>Logout</p>
-                    </button>
+                    
                 </div>
                 }
             </header>
