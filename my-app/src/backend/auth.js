@@ -4,7 +4,9 @@ import axios from 'axios';
 import './backend.css';
 
 
+
 export default function LogIn() {
+    const [duration, setDuration] = useState("")
     const CLIENT_ID = "9bd164afd63340c3a1522022a25e4442"
     const REDIRECT_URI = "http://localhost:3000"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
@@ -37,7 +39,7 @@ export default function LogIn() {
                         })
                         .then(r => {
                             const tracks = r.data.items
-                            console.log(tracks)
+                            // console.log(tracks)
                             tracks.forEach((t) => {
                                 const ref = t.track.href
                                 const time = t.track.duration_ms
@@ -48,12 +50,18 @@ export default function LogIn() {
                             // console.log(all_songs_duration)
 
                         })
+                        .then(r => {
+                            filterSongs(value)
+                            console.log("fajjae")
+                        }
+                    )
                 })
             })
             .catch(r => console.log(r.message))
 
-        // setArtists(data.artists.items)
     }
+
+
 
     const getUserId = () => {
         let id = axios
@@ -78,6 +86,19 @@ export default function LogIn() {
     } 
 
     const [token, setToken] = useState("")
+    
+    const [value, setValue] = useState('');
+
+    function MyControlledInput({ }) {
+        const onChange = (event) => {
+          setValue(event.target.value);
+        };
+        return (
+          <>
+            <input value={value} onChange={onChange} />
+          </>
+        );
+      }
 
     useEffect(() => {
         const hash = window.location.hash
@@ -98,6 +119,58 @@ export default function LogIn() {
         setToken("")
         window.localStorage.removeItem("token")
     }
+
+    function filterSongs(minutes) {
+        console.log("FILTERING")
+        const playlist_refs = []
+        all_songs_ref.forEach((ref) => {
+            axios.get(ref, {
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            })
+                .then(r => {
+                    console.log(r.data.duration_ms)
+                    const ms = r.data.duration_ms
+                    if (ms < minutes) {
+                        minutes = minutes - ms
+                        if (minutes < 0) {
+                            
+                        }
+                        playlist_refs.push(ref)
+                    }
+                })
+        })
+        console.log(playlist_refs)
+
+        
+        // all_songs_ref.sort(function (a, b) {
+        //     let a_duration = 0
+        //     let b_duration = 0
+        //     axios.get(a, {
+        //         headers: {
+        //             Authorization: "Bearer " + token
+        //         }
+        //     })
+        //         .then(r => {
+        //             let a_duration = r.data.duration_ms
+        //             axios.get(b, {
+        //                 headers: {
+        //                     Authorization: "Bearer " + token
+        //                 }
+        //             })
+        //                 .then(r => { let b_duration = r.data.duration_ms })
+                    
+        //     }).then({return (a_duration - b_duration)})
+        // })
+
+    }
+
+    // function handleSubmit() {
+    //     getSongs()
+
+        
+    // }
 
     return (
         <div className="App">
@@ -120,11 +193,13 @@ export default function LogIn() {
                 : 
                 // if the user is logged in, render this
                 <div className = "content-div">
-
-                    <input name="searchTxt" type="text" maxlength="512" id="searchTxt" class="searchField" placeholder='Enter a minute value'/>
+                <form onSubmit={getSongs}>
+                    <MyControlledInput/>
+                            <button type={"submit"}>Generate Playlist</button>
+                        </form>
 
                     {/* <a href={"https://open.spotify.com/playlist/" + playlist_id}> */}
-                        <button>Generate Playlist</button>
+                        {/* <button onClick={getSongs()}>Generate Playlist</button> */}
                     {/* </a> */}
 
                     <button className = "logout-button" onClick={logout}>
