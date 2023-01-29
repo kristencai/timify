@@ -12,6 +12,10 @@ import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import CircularProgress from '@mui/material/CircularProgress';
+import LinearProgress from '@mui/material/LinearProgress';
+
+
 
 export default function LogIn() {
   // const [duration, setDuration] = useState("")
@@ -97,6 +101,7 @@ export default function LogIn() {
     console.log(playlist_id)
       
     const url = playlist.data.uri
+    setLink(url)
     console.log(url)
 
       console.log(playlist);
@@ -109,6 +114,8 @@ export default function LogIn() {
   const [input, setInput] = useState("");
   const [title, setTitle] = useState("");
   const [genre, setGenre] = useState("");
+
+  const [link, setLink] = useState("")
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -268,8 +275,17 @@ export default function LogIn() {
                         Generate Playlist
                       </p>
                     </button>
+                    {
+                        link != "" ? 
+                            (
+                                <button onclick={link}>
+                                Click Here
+                                </button>
+                            ) : (<p></p>)
+                    }
                   </div>
                 </form>
+
                 <div style={{ paddingTop: "1rem" }}>
                   <button className="logout-button" onClick={logout}>
                     <p
