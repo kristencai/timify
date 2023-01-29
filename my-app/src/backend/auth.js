@@ -129,7 +129,9 @@ export default function LogIn() {
                     {console.log(input)}
 
                     {/* <a href={"https://open.spotify.com/playlist/" + playlist_id}> */}
-                        <button>Generate Playlist</button>
+                        <button className = "login-button">
+                        <p style = {{color: "#FFFFFF", fontWeight:500, outline: "#FFFFFF", margin: 0}}>Generate Playlist</p>
+                        </button>
                     {/* </a> */}
 
                     <button className = "logout-button" onClick={logout}>
