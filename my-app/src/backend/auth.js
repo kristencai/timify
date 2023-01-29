@@ -19,6 +19,7 @@ export default function LogIn() {
   const REDIRECT_URI = "http://localhost:3000";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
+  const SCOPE="playlist-modify-public%20playlist-modify-private"
   // const playlist_id = response.json()['id']
 
   const playlist_api = "https://api.spotify.com/v1/me/playlists";
@@ -83,7 +84,7 @@ export default function LogIn() {
       method: 'post',
       url: "https://api.spotify.com/v1/users/" + userid + "/playlists",
       headers: {
-        Authorization: "Bearer BQCzn4vv9xmaXe7hZJr09HDj_-PiC27mMXHy_chnMXmFYEHoBphpzy1dgf6st8JCPSWBcOm8ke8txuh-dlVDfk-F-XRLslff9oldK74ZsYAburJsKUnxXxXIPwxYqeiojLrYequ75PDeP3IERgyTlfg-DX6PRJGYoFhInc-8CVujhWdMvVT_za2BUZvgGYmVpXM3CUDxYo2U5jVzyVYfx06W61HeSNMJhPwIBb8o7n6uASYNZXARWPCogXtxMl0UJg",
+        Authorization: "Bearer " + token,
       },
       data:
       {
@@ -109,7 +110,7 @@ export default function LogIn() {
       method: 'post',
       url: "https://api.spotify.com/v1/playlists/" + playlist_id + "/tracks?uris=" + uri_string,
       headers: {
-        Authorization: "Bearer BQCzn4vv9xmaXe7hZJr09HDj_-PiC27mMXHy_chnMXmFYEHoBphpzy1dgf6st8JCPSWBcOm8ke8txuh-dlVDfk-F-XRLslff9oldK74ZsYAburJsKUnxXxXIPwxYqeiojLrYequ75PDeP3IERgyTlfg-DX6PRJGYoFhInc-8CVujhWdMvVT_za2BUZvgGYmVpXM3CUDxYo2U5jVzyVYfx06W61HeSNMJhPwIBb8o7n6uASYNZXARWPCogXtxMl0UJg",
+        Authorization: "Bearer " + token,
       },
     })
 
@@ -200,7 +201,7 @@ console.log(playlist_refs)
               with according to time and genre specifications.
             </p>
             <a
-              href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+              href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`}
             >
               <button className="login-button">
                 <p
