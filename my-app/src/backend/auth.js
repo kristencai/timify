@@ -65,8 +65,8 @@ export default function LogIn() {
       // console.log(all_songs_duration)
     }
 
-    filterSongs(parseInt(input));
-    makePlaylist()
+    
+    makePlaylist(await filterSongs(parseInt(input)))
 
   };
 
@@ -81,7 +81,7 @@ export default function LogIn() {
     return id.data.id;
   };
 
-  const makePlaylist = async () => {
+  const makePlaylist = async (songs) => {
     const userid = await getUserId()
     const playlist = await axios({
       method: 'post',
@@ -91,20 +91,35 @@ export default function LogIn() {
       },
       data:
       {
-        "name": "New Playlist",
-        "description": "New playlist description",
+        "name": title,
+        // "description": "New playlist description",
         "public": false
       }
     })
 
     const playlist_id = playlist.data.id
-    console.log(playlist_id)
+    // console.log(playlist_id)
       
     const url = playlist.data.uri
     setLink(url)
     console.log(url)
+    // console.log(url)
 
-      console.log(playlist);
+    let uri_string = ""
+    for (const uri of songs) {
+      uri_string += uri + ","
+    }
+
+
+    const addSongs = await axios({
+      method: 'post',
+      url: "https://api.spotify.com/v1/playlists/" + playlist_id + "/tracks?uris=" + uri_string,
+      headers: {
+        Authorization: "Bearer BQCzn4vv9xmaXe7hZJr09HDj_-PiC27mMXHy_chnMXmFYEHoBphpzy1dgf6st8JCPSWBcOm8ke8txuh-dlVDfk-F-XRLslff9oldK74ZsYAburJsKUnxXxXIPwxYqeiojLrYequ75PDeP3IERgyTlfg-DX6PRJGYoFhInc-8CVujhWdMvVT_za2BUZvgGYmVpXM3CUDxYo2U5jVzyVYfx06W61HeSNMJhPwIBb8o7n6uASYNZXARWPCogXtxMl0UJg",
+      },
+    })
+
+    console.log(addSongs)
   };
 
   const [token, setToken] = useState("");
@@ -158,7 +173,7 @@ export default function LogIn() {
       // console.log(converted);
       if (converted < limit) {
         console.log("decrementing limit by " + converted);
-        playlist_refs.push(all_songs_ref[index]);
+        playlist_refs.push(r.data.uri);
       }
       index += 1;
       limit -= converted;
@@ -168,7 +183,7 @@ export default function LogIn() {
     // console.log("FINAL PLAYLIST:");
     // playlist_refs.forEach((r) => console.log(r));
     // console.log(playlist_refs.length);
-
+console.log(playlist_refs)
     return playlist_refs
 
   }
