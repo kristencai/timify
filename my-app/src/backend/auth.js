@@ -147,7 +147,7 @@ export default function LogIn() {
                 // if the user is logged in, render this
                 <div className = "content-div">
 
-                    <input id={id} value={input} onInput={e => setInput(e.target.value)}/>
+                    {/* <input id={id} value={input} onInput={e => setInput(e.target.value)}/> */}
                     {console.log(input)}
 
                     <ThemeProvider theme={darkTheme}>
