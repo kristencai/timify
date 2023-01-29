@@ -90,6 +90,8 @@ export default function LogIn() {
     const [token, setToken] = useState("")
     const id = useId();
     const [input, setInput] = useState('');
+    const [title, setTitle] = useState('')
+    const [genre, setGenre] = useState('');
 
     getSong: 
 
@@ -119,11 +121,8 @@ export default function LogIn() {
         },
       });
 
-      const [genre, setGenre] = React.useState('');
+      
     
-      const handleChange = (event) => {
-          setGenre(event.target.value);
-      };
 
     return (
         <div className="App">
@@ -156,41 +155,38 @@ export default function LogIn() {
                     <div className="surround">
 
                         <div className='field'>
-                            <TextField id="outlined-number" label="Duration of playlist (minutes)" type="number" InputLabelProps={{shrink: true,}} style = {{width:350}}/>
+                            <TextField id="outlined-number" label="Duration of playlist (minutes)" type="text" InputLabelProps={{shrink: true,}} style = {{width:350}} 
+                            value = {input} onChange = {x => setInput(x.target.value)}/>
                         </div>
                         
                         <div className='field'>
-                            <TextField id="outlined-basic" label="Playlist Name" variant="outlined" InputLabelProps={{shrink: true,}} style = {{width:350}} />
+                            <TextField id="outlined-basic" label="Playlist Name" variant="outlined" InputLabelProps={{shrink: true,}} style = {{width:350}} 
+                            value = {title} onChange = {x => setTitle(x.target.value)}/>
                         </div>
-
-
 
                         <div className='field'>
                             <FormControl style = {{width:350}}>
                                 <InputLabel id="demo-simple-select-label">Genre</InputLabel>
-                                <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={genre}
-                                label="Genre"
-                                onChange={handleChange}
-                                >
+                                <Select labelId="demo-simple-select-label" id="demo-simple-select" value={genre} label="Genre"
+                                onChange={x => setGenre(x.target.value)}>
                                 <MenuItem value={1}>Pop</MenuItem>
                                 <MenuItem value={2}>Rock</MenuItem>
                                 <MenuItem value={3}>Jazz</MenuItem>
                                 <MenuItem value={4}>Classical</MenuItem>
-
+                                {console.log(genre)}
                                 </Select>
                             </FormControl>
                         </div>
-
-                        <div className='field'>
-                            <Button color="success" variant="outlined">Generate Playlist</Button>
+                        <div style = {{paddingBottom: "1rem",}}>
+                            <button className = "login-button">
+                                <p style = {{color: "#FFFFFF", fontWeight:500, outline: "#FFFFFF", margin: 0}}>Generate Playlist</p>
+                            </button>
                         </div>
-
-
-
-
+                        <div style = {{paddingTop: "1rem",}}>
+                            <button className = "logout-button" onClick={logout}>
+                                <p style = {{color: "#1DB954", fontWeight:500, outline: "#FFFFFF", margin: 0}}>Logout</p>
+                            </button>
+                        </div>
 
                     </div>
                     </ThemeProvider>
@@ -198,14 +194,10 @@ export default function LogIn() {
 
 
                     {/* <a href={"https://open.spotify.com/playlist/" + playlist_id}> */}
-                        <button className = "login-button">
-                        <p style = {{color: "#FFFFFF", fontWeight:500, outline: "#FFFFFF", margin: 0}}>Generate Playlist</p>
-                        </button>
+                        
                     {/* </a> */}
 
-                    <button className = "logout-button" onClick={logout}>
-                        <p style = {{color: "#1DB954", fontWeight:500, outline: "#FFFFFF", margin: 0}}>Logout</p>
-                    </button>
+                    
                 </div>
                 }
             </header>
