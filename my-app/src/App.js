@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import LogIn from './backend/auth';
-import RecommendationPage from './RecommendationPage';
+
 
 
 function App() {
