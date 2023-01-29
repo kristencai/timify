@@ -8,6 +8,16 @@
     border-color: white;
 }
 
+.login-button2{
+    width: 16rem;
+    height: 4rem;
+    border-radius: 1.2rem;
+    background-color: #f5e1fd;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    border-color: white;
+}
+
 .App-header{
     padding-left: 3rem;
     padding-right: 3rem;

@@ -68,7 +68,7 @@ export default function LogIn() {
 
     
     makePlaylist(await filterSongs(parseInt(input)))
-
+    console.log(link)
   };
 
    const getUserId = async () => {
@@ -101,7 +101,8 @@ export default function LogIn() {
     const playlist_id = playlist.data.id
     // console.log(playlist_id)
       
-    const url = playlist.data.uri
+    console.log(playlist.data.external_urls.spotify)
+    const url = playlist.data.external_urls.spotify
     setLink(url)
     console.log(url)
     // console.log(url)
@@ -291,15 +292,19 @@ console.log(playlist_refs)
                         Generate Playlist
                       </p>
                     </button>
+                    </div>
+                    
                     {
-                        link != "" ? 
-                            (
-                                <button onclick={link}>
-                                Click Here
-                                </button>
+                        link !== "" ?
+
+                          (
+                          <a href={link}>
+                            <input type="button" className="login-button2" value="Playlist Link" />
+                          </a>
+                          
+                                
                             ) : (<p></p>)
                     }
-                  </div>
                 </form>
 
                 <div style={{ paddingTop: "1rem" }}>
