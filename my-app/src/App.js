@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import LogIn from './backend/auth';
+import RecommendationPage from './RecommendationPage';
 
 
 function App() {
@@ -8,7 +9,8 @@ function App() {
     <div className="App">
       <div style={{flex: "flex", flexDirection:"row"}}>
         <div>
-          <LogIn/>
+          <RecommendationPage/>
+          {/* <LogIn/> */}
         </div>
         <div>
             asdfasdf
