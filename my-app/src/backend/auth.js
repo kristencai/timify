@@ -66,30 +66,40 @@ export default function LogIn() {
 
   };
 
-  const getUserId = () => {
-    let id = axios
+   const getUserId = async () => {
+    const id = await axios
       .get("https://api.spotify.com/v1/me", {
         headers: {
           Authorization: "Bearer " + token,
         },
       })
-      .then((r) => (id = r));
-    return id;
+
+    return id.data.id;
   };
 
-  const makePlaylist = () => {
-    const userid = getUserId();
-    const playlist = axios
-      .post(
-        "https://api.spotify.com/v1/users/" + userid + "/playlists",
-        { name: "Timeify" },
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      )
-      .then((r) => console.log("Trying to make playlist: " + r));
+  const makePlaylist = async () => {
+    const userid = await getUserId()
+    const playlist = await axios({
+      method: 'post',
+      url: "https://api.spotify.com/v1/users/" + userid + "/playlists",
+      headers: {
+        Authorization: "Bearer BQCzn4vv9xmaXe7hZJr09HDj_-PiC27mMXHy_chnMXmFYEHoBphpzy1dgf6st8JCPSWBcOm8ke8txuh-dlVDfk-F-XRLslff9oldK74ZsYAburJsKUnxXxXIPwxYqeiojLrYequ75PDeP3IERgyTlfg-DX6PRJGYoFhInc-8CVujhWdMvVT_za2BUZvgGYmVpXM3CUDxYo2U5jVzyVYfx06W61HeSNMJhPwIBb8o7n6uASYNZXARWPCogXtxMl0UJg",
+      },
+      data:
+      {
+        "name": "New Playlist",
+        "description": "New playlist description",
+        "public": false
+      }
+    })
+
+    const playlist_id = playlist.data.id
+    console.log(playlist_id)
+      
+    const url = playlist.data.uri
+    console.log(url)
+
+      console.log(playlist);
   };
 
   const [token, setToken] = useState("");
@@ -124,7 +134,7 @@ export default function LogIn() {
   };
 
   async function filterSongs(minutes) {
-    console.log("FILTERING" + minutes);
+    // console.log("FILTERING" + minutes);
     const playlist_refs = [];
     let index = 0;
     let limit = minutes;
@@ -138,19 +148,19 @@ export default function LogIn() {
       });
 
       const converted = r.data.duration_ms / 60000;
-      console.log(converted);
+      // console.log(converted);
       if (converted < limit) {
         console.log("decrementing limit by " + converted);
         playlist_refs.push(all_songs_ref[index]);
       }
       index += 1;
       limit -= converted;
-      console.log("+1");
-      console.log(limit);
+      // console.log("+1");
+      // console.log(limit);
     }
-    console.log("FINAL PLAYLIST:");
-    playlist_refs.forEach((r) => console.log(r));
-    console.log(playlist_refs.length);
+    // console.log("FINAL PLAYLIST:");
+    // playlist_refs.forEach((r) => console.log(r));
+    // console.log(playlist_refs.length);
 
     return playlist_refs
 
