@@ -62,7 +62,7 @@ export default function LogIn() {
     }
 
     
-    makePlaylist(filterSongs(parseInt(input)))
+    makePlaylist(await filterSongs(parseInt(input)))
 
   };
 
@@ -87,27 +87,33 @@ export default function LogIn() {
       },
       data:
       {
-        "name": "New Playlist",
-        "description": "New playlist description",
+        "name": title,
+        // "description": "New playlist description",
         "public": false
       }
     })
 
     const playlist_id = playlist.data.id
-    console.log(playlist_id)
+    // console.log(playlist_id)
       
     const url = playlist.data.uri
-    console.log(url)
+    // console.log(url)
 
-    
+    let uri_string = ""
+    for (const uri of songs) {
+      uri_string += uri + ","
+    }
+
 
     const addSongs = await axios({
       method: 'post',
-      url: "https://api.spotify.com/v1/playlists/" + playlist_id + "/tracks?uris=",
+      url: "https://api.spotify.com/v1/playlists/" + playlist_id + "/tracks?uris=" + uri_string,
       headers: {
         Authorization: "Bearer BQCzn4vv9xmaXe7hZJr09HDj_-PiC27mMXHy_chnMXmFYEHoBphpzy1dgf6st8JCPSWBcOm8ke8txuh-dlVDfk-F-XRLslff9oldK74ZsYAburJsKUnxXxXIPwxYqeiojLrYequ75PDeP3IERgyTlfg-DX6PRJGYoFhInc-8CVujhWdMvVT_za2BUZvgGYmVpXM3CUDxYo2U5jVzyVYfx06W61HeSNMJhPwIBb8o7n6uASYNZXARWPCogXtxMl0UJg",
       },
     })
+
+    console.log(addSongs)
   };
 
   const [token, setToken] = useState("");
